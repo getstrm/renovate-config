@@ -18,7 +18,7 @@
   // taken from config:recommended
   branchConcurrentLimit: 10,
   // taken from config:recommended
-  prHourlyLimit: 2,
+  prHourlyLimit: 10,
   // If we intentionally close a Renovate MR, consider it as "update not desired"
   recreateClosed: false,
   rebaseWhen: "behind-base-branch",
