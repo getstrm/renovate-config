@@ -1,0 +1,423 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  platform: "github",
+  baseBranches: [
+    "main",
+    "alpha",
+    "beta"
+  ],
+  extends: [
+    ":ignoreModulesAndTests"
+  ],
+  labels: [
+    "renovate"
+  ],
+  rebaseLabel: "renovate-please-rebase",
+  semanticCommits: "enabled",
+  dependencyDashboard: false,
+  // taken from config:recommended
+  branchConcurrentLimit: 10,
+  // taken from config:recommended
+  prHourlyLimit: 2,
+  // If we intentionally close a Renovate MR, consider it as "update not desired"
+  recreateClosed: false,
+  rebaseWhen: "behind-base-branch",
+  rangeStrategy: "auto",
+  branchPrefix: "renovate/",
+  gomod: {
+    postUpdateOptions: [
+      "gomodTidy"
+    ]
+  },
+  packageRules: [
+    {
+      matchPackagePatterns: [
+        "*"
+      ],
+      semanticCommitType: "chore"
+    },
+    {
+      matchManagers: [
+        "npm"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major",
+        "minor",
+        "patch"
+      ],
+      matchDepTypes: [
+        "devDependencies"
+      ],
+      separateMajorMinor: false,
+      groupName: "npm dev dependencies",
+      groupSlug: "all-npm-dev-dependencies",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "major-minor-patch",
+        "npm",
+        "npm-dev-dependencies"
+      ]
+    },
+    {
+      matchManagers: [
+        "npm"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "minor",
+        "patch"
+      ],
+      matchDepTypes: [
+        "dependencies"
+      ],
+      groupName: "npm dependencies",
+      groupSlug: "non-major-npm",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "minor-patch",
+        "npm",
+        "npm-dependencies"
+      ]
+    },
+    {
+      matchManagers: [
+        "npm"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major"
+      ],
+      matchDepTypes: [
+        "dependencies"
+      ],
+      groupName: "npm major dependencies",
+      groupSlug: "npm",
+      automerge: false,
+      semanticCommitType: "feat",
+      addLabels: [
+        "major",
+        "npm",
+        "npm-dependencies"
+      ]
+    },
+    {
+      matchManagers: [
+        "node"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "minor",
+        "patch"
+      ],
+      groupName: "node dependencies",
+      groupSlug: "non-major-node",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "minor-patch",
+        "node"
+      ]
+    },
+    {
+      matchManagers: [
+        "node"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major"
+      ],
+      groupName: "node major dependencies",
+      groupSlug: "node",
+      automerge: false,
+      semanticCommitType: "feat",
+      addLabels: [
+        "major",
+        "node"
+      ]
+    },
+    {
+      matchManagers: [
+        "dockerfile"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major",
+        "minor",
+        "patch"
+      ],
+      groupName: "docker dependencies",
+      groupSlug: "docker-dependencies",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "major-minor-patch",
+        "docker"
+      ]
+    },
+    {
+      matchManagers: [
+        "github-actions"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major",
+        "minor",
+        "patch"
+      ],
+      groupName: "github actions dependencies",
+      groupSlug: "github-actions-dependencies",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "major-minor-patch",
+        "gitlab-ci"
+      ]
+    },
+    {
+      matchManagers: [
+        "maven",
+        "gradle"
+      ],
+      matchPackagePrefixes: [
+        "build.buf.gen"
+      ],
+      registryUrls: [
+        "https://buf.build/gen/maven"
+      ]
+    },
+    {
+      matchManagers: [
+        "gradle-wrapper"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major",
+        "minor",
+        "patch"
+      ],
+      groupName: "gradle wrapper update",
+      groupSlug: "all-gradle-wrapper",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "major-minor-patch",
+        "gradle",
+        "gradle-wrapper"
+      ]
+    },
+    {
+      matchManagers: [
+        "gradle"
+      ],
+      matchPaths: [
+        "settings.gradle",
+        "settings.gradle.kts"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major",
+        "minor",
+        "patch"
+      ],
+      groupName: "gradle build dependencies",
+      groupSlug: "all-gradle-build",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "major-minor-patch",
+        "gradle",
+        "gradle-build"
+      ]
+    },
+    {
+      matchManagers: [
+        "gradle"
+      ],
+      matchPaths: [
+        "build.gradle",
+        "build.gradle.kts",
+        "gradle.properties"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "minor",
+        "patch"
+      ],
+      groupName: "gradle app dependencies",
+      groupSlug: "non-major-gradle-app",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "minor-patch",
+        "gradle",
+        "gradle-app"
+      ]
+    },
+    {
+      matchManagers: [
+        "gradle"
+      ],
+      matchPaths: [
+        "build.gradle",
+        "build.gradle.kts",
+        "gradle.properties"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major"
+      ],
+      groupName: "gradle app major dependencies",
+      groupSlug: "gradle-app",
+      automerge: false,
+      semanticCommitType: "feat",
+      addLabels: [
+        "major",
+        "gradle",
+        "gradle-app"
+      ]
+    },
+    {
+      matchManagers: [
+        "terraform"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "minor",
+        "patch"
+      ],
+      groupName: "terraform dependencies",
+      groupSlug: "non-major-terraform",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "minor-patch",
+        "terraform"
+      ]
+    },
+    {
+      matchManagers: [
+        "terraform"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major"
+      ],
+      groupName: "terraform major dependencies",
+      groupSlug: "terraform",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "major",
+        "terraform"
+      ]
+    },
+    {
+      matchManagers: [
+        "gomod"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "minor",
+        "patch",
+        "digest"
+      ],
+      groupName: "golang dependencies",
+      groupSlug: "non-major-golang",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "minor-patch",
+        "go"
+      ]
+    },
+    {
+      matchManagers: [
+        "gomod"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major"
+      ],
+      groupName: "golang major dependencies",
+      groupSlug: "golang",
+      automerge: false,
+      semanticCommitType: "feat",
+      addLabels: [
+        "major",
+        "go"
+      ]
+    },
+    {
+      matchManagers: [
+        "pip_requirements"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "minor",
+        "patch"
+      ],
+      groupName: "python dependencies",
+      groupSlug: "non-major-python",
+      automerge: true,
+      platformAutomerge: true,
+      addLabels: [
+        "minor-patch",
+        "python"
+      ]
+    },
+    {
+      matchManagers: [
+        "pip_requirements"
+      ],
+      matchPackagePatterns: [
+        "*"
+      ],
+      matchUpdateTypes: [
+        "major"
+      ],
+      groupName: "python major dependencies",
+      groupSlug: "python",
+      automerge: false,
+      semanticCommitType: "feat",
+      addLabels: [
+        "major",
+        "python"
+      ]
+    }
+  ]
+}

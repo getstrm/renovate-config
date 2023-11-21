@@ -1,0 +1,20 @@
+{
+  "name": "renovate-config",
+  "description": "Shared Renovate configuration",
+  "scripts": {
+    "verify": "./scripts/verify.sh",
+    "build": "node ./scripts/json5-to-json.js",
+    "test": "renovate-config-validator",
+    "postinstall": "husky install"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "glob": "^7.2.0",
+    "husky": "7.0.4",
+    "json5": "2.2.3",
+    "renovate": "^37.64.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
