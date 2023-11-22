@@ -192,18 +192,6 @@
     },
     {
       matchManagers: [
-        "maven",
-        "gradle"
-      ],
-      matchPackagePrefixes: [
-        "build.buf.gen"
-      ],
-      registryUrls: [
-        "https://buf.build/gen/maven"
-      ]
-    },
-    {
-      matchManagers: [
         "gradle-wrapper"
       ],
       matchPackagePatterns: [
@@ -349,8 +337,7 @@
       ],
       matchUpdateTypes: [
         "minor",
-        "patch",
-        "digest"
+        "patch"
       ],
       groupName: "golang dependencies",
       groupSlug: "non-major-golang",
