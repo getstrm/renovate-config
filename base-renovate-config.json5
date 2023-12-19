@@ -217,8 +217,8 @@
         "gradle"
       ],
       matchPaths: [
-        "settings.gradle",
-        "settings.gradle.kts"
+        "**/settings.gradle",
+        "**/settings.gradle.kts"
       ],
       matchPackagePatterns: [
         "*"
@@ -242,9 +242,9 @@
       matchManagers: [
         "gradle"
       ],
-      matchPaths: [
-        "build.gradle",
-        "build.gradle.kts",
+      matchFileNames: [
+        "**/build.gradle",
+        "**/build.gradle.kts",
         "gradle.properties"
       ],
       matchPackagePatterns: [
@@ -269,9 +269,9 @@
         "gradle"
       ],
       matchPaths: [
-        "build.gradle",
-        "build.gradle.kts",
-        "gradle.properties"
+        "**/build.gradle",
+        "**/build.gradle.kts",
+        "**/gradle.properties"
       ],
       matchPackagePatterns: [
         "*"
